@@ -31,7 +31,16 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
+.env.local
 .env*.local
+
+# logs
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
 
 # typescript
 *.tsbuildinfo
