@@ -1,49 +1,50 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, Image} from "react-native";
 
 const repositories = [
   {
-    id: 'jaredpalmer.formik',
-    fullName: 'jaredpalmer/formik',
-    description: 'Build forms in React, without the tears',
-    language: 'TypeScript',
+    id: "jaredpalmer.formik",
+    fullName: "jaredpalmer/formik",
+    description: "Build forms in React, without the tears",
+    language: "TypeScript",
     forksCount: 1589,
     stargazersCount: 21553,
     ratingAverage: 88,
     reviewCount: 4,
-    ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/4060187?v=4',
+    ownerAvatarUrl:
+      "https://tse1.mm.bing.net/th/id/OIP.kfM6gE5n_IxPxrdgZg7SigHaLH?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
   },
   {
-    id: 'rails.rails',
-    fullName: 'rails/rails',
-    description: 'Ruby on Rails',
-    language: 'Ruby',
+    id: "rails.rails",
+    fullName: "rails/rails",
+    description: "Ruby on Rails",
+    language: "Ruby",
     forksCount: 18349,
     stargazersCount: 45377,
     ratingAverage: 100,
     reviewCount: 2,
-    ownerAvatarUrl: 'https://avatars1.githubusercontent.com/u/4223?v=4',
+    ownerAvatarUrl: "https://avatars1.githubusercontent.com/u/4223?v=4",
   },
   {
-    id: 'django.django',
-    fullName: 'django/django',
-    description: 'The Web framework for perfectionists with deadlines.',
-    language: 'Python',
+    id: "django.django",
+    fullName: "django/django",
+    description: "The Web framework for perfectionists with deadlines.",
+    language: "Python",
     forksCount: 21015,
     stargazersCount: 48496,
     ratingAverage: 73,
     reviewCount: 5,
-    ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/27804?v=4',
+    ownerAvatarUrl: "https://avatars2.githubusercontent.com/u/27804?v=4",
   },
   {
-    id: 'reduxjs.redux',
-    fullName: 'reduxjs/redux',
-    description: 'Predictable state container for JavaScript apps',
-    language: 'TypeScript',
+    id: "reduxjs.redux",
+    fullName: "reduxjs/redux",
+    description: "Predictable state container for JavaScript apps",
+    language: "TypeScript",
     forksCount: 13902,
     stargazersCount: 52869,
     ratingAverage: 0,
     reviewCount: 0,
-    ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4',
+    ownerAvatarUrl: "https://avatars3.githubusercontent.com/u/13142323?v=4",
   },
 ];
 
@@ -60,26 +61,48 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 
-  texts: {
+  headerTexts: {
     fontSize: 20,
   },
+  SubTexts: {
+    fontSize: 13,
+  },
+  image: {
+    width: 100,
+    height: 100,
+  },
+  repo: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  button:{
+    padding: 15,
+    backgroundColor: 'blue',
+    width: "100",
+    borderRadius: 10,
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
+  }
 });
 
 export default function ListComponent() {
+  const renderItem = ({ item }) => (
+    <View style={styles.container}>
+      <View style={styles.repo}>
+        <Image source={{ uri: item.ownerAvatarUrl }} style={styles.image} />
+        <View>
+          <Text style={styles.headerTexts}>{item.fullName}</Text>
+          <Text style={styles.SubTexts}>{item.description}</Text>
+          <Text style={styles.button}>{item.language}</Text>
+        </View>
+      </View>
+    </View>
+  );
+
   return (
     <View>
-      <FlatList
-        data={repositories}
-        keyExtractor={(item) => item.key}
-        renderItem={({ item }) => (
-          <View style={styles.container}>
-            <Text style={styles.texts}>id: {item.id}</Text>
-            <Text style={styles.texts}>FullName: {item.fullName}</Text>
-            <Text style={styles.texts}>Description: {item.description}</Text>
-            <Text style={styles.texts}>Language {item.language}</Text>
-          </View>
-        )}
-      />
+      <FlatList data={repositories} renderItem={renderItem} />
     </View>
   );
 }

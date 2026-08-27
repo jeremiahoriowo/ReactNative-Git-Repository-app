@@ -1,9 +1,12 @@
-import Main from './src/components/Main';
+import Main from "./src/components/Main";
+import { StatusBar } from "expo-status-bar";
 function App() {
   return (
-    <Main />
+    <>
+      <StatusBar style="dark" />
+      <Main />
+    </>
   );
 }
-
 
 export default App;
