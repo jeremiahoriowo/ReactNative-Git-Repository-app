@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ListComponent({ ListHeaderComponent }) {
+export default function ListComponent() {
   const renderItem = ({ item }) => (
     <View style={styles.container}>
       <View style={styles.repo}>
@@ -110,32 +110,30 @@ export default function ListComponent({ ListHeaderComponent }) {
           </View>
         </View>
       </View>
-      <View style={{ flexDirection: "row", gap: 10, marginTop: 5, justifyContent: "space-evenly" }}>
-        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
-          <Text style={styles}>{item.forksCount}</Text>
-          <Text style={styles}>Forks</Text>
-        </View>
-        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
-          <Text style={styles}>{item.stargazersCount}</Text>
-          <Text style={styles}>Stars</Text>
-        </View>
-        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
-          <Text style={styles}>{item.reviewCount}</Text>
-          <Text style={styles}>Reviews</Text>
-        </View>
-        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
-          <Text style={styles}>{item.ratingAverage}</Text>
-          <Text style={styles}>Rating</Text>
-        </View>
-      </View>
+               <View style={{ flexDirection: "row", gap: 10, marginTop: 5, justifyContent: "space-evenly" }}>
+              <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+                <Text style={styles}>{item.forksCount}</Text>
+                <Text style={styles}>Forks</Text>
+              </View>
+              <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+                <Text style={styles}>{item.stargazersCount}</Text>
+                <Text style={styles}>Stars</Text>
+              </View>
+              <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+                <Text style={styles}>{item.reviewCount}</Text>
+                <Text style={styles}>Reviews</Text>
+              </View>
+              <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+                <Text style={styles}>{item.ratingAverage}</Text>
+                <Text style={styles}>Rating</Text>
+              </View>
+            </View>
     </View>
   );
 
   return (
-    <FlatList 
-      data={repositories} 
-      renderItem={renderItem}
-      ListHeaderComponent={ListHeaderComponent}
-    />
+    <View>
+      <FlatList data={repositories} renderItem={renderItem} />
+    </View>
   );
 }
