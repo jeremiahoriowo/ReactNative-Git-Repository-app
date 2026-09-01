@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View, Image} from "react-native";
+import { FlatList, StyleSheet, Text, View, Image } from "react-native";
 
 const repositories = [
   {
@@ -59,13 +59,20 @@ const styles = StyleSheet.create({
     borderColor: "red",
     borderWidth: 3,
     margin: 5,
+    width: "98%",
   },
 
   headerTexts: {
     fontSize: 20,
+    flexShrink: 1,
+    flexWrap: "wrap",
   },
   SubTexts: {
     fontSize: 13,
+    flexShrink: 1,
+    flexWrap: "wrap",
+    marginTop: 5,
+    marginBottom: 5,
   },
   image: {
     width: 100,
@@ -75,34 +82,60 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
   },
-  button:{
-    padding: 15,
-    backgroundColor: 'blue',
-    width: "100",
-    borderRadius: 10,
-    color: 'white',
+  repoContent: {
+    flex: 1,
+    flexShrink: 1,
+  },
+  button: {
+    padding: 5,
+    backgroundColor: "blue",
+    borderRadius: 3,
+    color: "white",
     fontSize: 12,
-    textAlign: 'center',
-  }
+    textAlign: "center",
+    alignSelf: "flex-start",
+  },
 });
 
-export default function ListComponent() {
+export default function ListComponent({ ListHeaderComponent }) {
   const renderItem = ({ item }) => (
     <View style={styles.container}>
       <View style={styles.repo}>
         <Image source={{ uri: item.ownerAvatarUrl }} style={styles.image} />
-        <View>
+        <View style={styles.repoContent}>
           <Text style={styles.headerTexts}>{item.fullName}</Text>
           <Text style={styles.SubTexts}>{item.description}</Text>
           <Text style={styles.button}>{item.language}</Text>
+          <View>
+          </View>
+        </View>
+      </View>
+      <View style={{ flexDirection: "row", gap: 10, marginTop: 5, justifyContent: "space-evenly" }}>
+        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+          <Text style={styles}>{item.forksCount}</Text>
+          <Text style={styles}>Forks</Text>
+        </View>
+        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+          <Text style={styles}>{item.stargazersCount}</Text>
+          <Text style={styles}>Stars</Text>
+        </View>
+        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+          <Text style={styles}>{item.reviewCount}</Text>
+          <Text style={styles}>Reviews</Text>
+        </View>
+        <View style={{ flexDirection: "column", gap: 10, marginTop: 5 }}>
+          <Text style={styles}>{item.ratingAverage}</Text>
+          <Text style={styles}>Rating</Text>
         </View>
       </View>
     </View>
   );
 
   return (
-    <View>
-      <FlatList data={repositories} renderItem={renderItem} />
-    </View>
+    <FlatList 
+      data={repositories} 
+      renderItem={renderItem}
+      ListHeaderComponent={ListHeaderComponent}
+    />
   );
 }
