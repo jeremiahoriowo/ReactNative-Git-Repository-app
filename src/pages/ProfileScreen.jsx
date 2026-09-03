@@ -6,7 +6,7 @@ export default function ProfileScreen({navigation}) {
             <Text>This is our Profile Page</Text>
             <Button 
             title="View Profile"
-            onPress={() => navigation.navigate("Profile")}
+            onPress={() => navigation.goBack()}
             />
         </View>
     )

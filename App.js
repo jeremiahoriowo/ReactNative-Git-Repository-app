@@ -5,14 +5,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./src/pages/HomeScreen";
 import ProfileScreen from "./src/pages/ProfileScreen";
+import Form from "./src/pages/Form";
+import Api from "./src/pages/api";
 
 const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
+        <Stack.Screen name="Profile" options={{ headerShown: false }} component={ProfileScreen} />
+        <Stack.Screen name="Form" options={{ headerShown: false }} component={Form} />
+        <Stack.Screen name="Api" options={{ headerShown: false }} component={Api} />
       </Stack.Navigator>
 {/* 
       <StatusBar style="dark" />
